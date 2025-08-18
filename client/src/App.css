@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    background: black;
+}
+
+.pageSection {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topSection, #projectSection, #skillsSection, .projectButton, .projectText {
+    font-family: 'Roboto';
+}
+
+
+/* Top Section styling */
+.topSection {
+    background: 
+    rgb(38, 35, 61)
+    radial-gradient(transparent, black 90%);
+    position: relative;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.topSection.animate-in {
+    opacity: 1;
+}
+
+.projectSection.animate-in {
+    opacity: 1;
+}
+
+.topSection h1{
+    font-size: 3rem;
+    background-image: linear-gradient(90deg, rgb(98, 73, 222), rgb(81, 8, 137));
+    color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 2s ease-in, transform 2s;
+}
+
+.topSection h2 {
+    font-size: 1.25rem;
+    font-weight: normal;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 2s ease-in, transform 2s;
+    transition-delay: 0.5s;
+    color: grey;
+}
+
+.topSection.animate-in h1 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.topSection.animate-in h2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.arrowIcon {
+    animation: bounce 1.5s infinite;
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(0);
+    opacity: 0;
+    color: grey;
+}
+
+.arrowIcon.animate-in {
+    opacity: 1;
+    transition: opacity 2.5s ease-in;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+
+/* Project Section Styling */
+.projectSection {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    background: 
+    linear-gradient(black 70%, rgb(45, 5, 45));
+    color: white;
+}
+
+.projectSection h3 {
+    font-size: 2rem;
+    color: white;
+}
+
+.projectSection h4 {
+    font-size: 20px;
+}
+
+.projectBox {
+    position: relative;
+    margin: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-in, transform 2s;
+    transition-delay: 1s;
+}
+
+.projectBox.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.projectTextArea {
+    position: absolute;
+    bottom: 20%;
+    left: 16px;
+}
+
+.projectText {
+    margin-bottom: 10px;
+    color: white;
+}
+
+.projectButtonsArea {
+    position: absolute;
+    bottom: 5%;
+    left: 16px;
+}
+
+.projectButton {
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    border-radius: 20px;
+    margin-right: 1rem;
+    border: none;
+    background-color: rgba(45, 47, 57, 0.6);
+    transition: background-color 0.25s;
+}
+
+.projectButton:hover {
+    background-color: rgba(75, 79, 95, 0.6);
+}
+
+.projectImage {
+    filter: 
+    blur(2px)
+    brightness(75%);
+    overflow: hidden;
+    width: 80vw;
+    max-width: 500px;
+    height: auto;
+}
+
+.projectBox:hover .projectImage {
+    filter: 
+    blur(0px)
+    brightness(100%);
+    transition: filter 1s;
+}
+
+/* Skills Section Styling */
+.skillsTitle {
+    margin-top: 6rem;
+}
+
+.skillsSection h3 {
+    font-size: 2rem;
+}
+
+.skillButton {
+    padding: 0px;
+    width: 200px;
+    height: 75px;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    margin-right: 1rem;
+    border: none;
+    opacity: 0;
+    background-color: rgba(45, 47, 57, 0.6);
+    transition: transform 1s, opacity 1s ease-in;
+}
+
+.skillGrid.animate-in .skillButton:hover {
+    background-color: rgba(75, 79, 95, 0.6);
+}
+
+.skillGrid.animate-in .skillButton {
+    opacity: 1;
+    transition-delay: calc(0.2s * var(--i));
+}
+
+.skillGrid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: auto;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+
+
+/* Footer Section Styling */
+
+.footerSection {
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding-top: 5%;
+}
+
+.footerSection > div:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footerSection h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footerSection p {
+    margin-bottom: 1rem;
+}
+
+.footerButton {
+    padding: 10px;
+    width: auto;
+    height: auto;
+    font-size: 15px;
+    color: white;
+    border-radius: 50px;
+    margin-right: 1rem;
+    border: none;
+    margin-bottom: 1rem;
+    background-color: rgba(45, 47, 57, 0.6);
+    transition: background-color 0.25s;
+}
+
+.footerButton:hover {
+    background-color: rgba(75, 79, 95, 0.6);
+}
+
+.socialButton {
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    font-size: 15px;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(45, 47, 57, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(45, 47, 57, 0.6);
+    transition: background-color 0.25s;
+}
+
+.socialButton:hover {
+    background-color: rgba(75, 79, 95, 0.6);
+}
+
+.footerButton .MuiSvgIcon-root {
+    position: relative;
+    top: 2px;
+    font-size: 15px;
+    margin-right: 8px;
+}
+.socialButton .MuiSvgIcon-root {
+    margin: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+}
+
+.topSection .MuiSvgIcon-root {
+    font-size: 40px;
+}
+
+a{ text-decoration: none; color: white;}
+a:visited{ text-decoration: none; color: white;}
+a:hover{ text-decoration: none; color: white;}
+
+
+/* Mobile Styling */
+
+@media (max-width: 600px) {
+    .skillsTitle {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .skillGrid {
+        width: 100vw;
+        max-width: 100vw;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0 0.5rem;
+    }
+    .skillButton {
+        width: 96vw;
+        max-width: 96vw;
+        font-size: 15px;
+        height: 4vh;
+        margin-right: 0;
+    }
+}
