@@ -8,7 +8,8 @@ import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AnimatedSection from '../components/animate';
-import resume from '../assets/files/Seth_Toland_Resume.pdf'
+import resume from '../assets/files/Seth_Toland_Resume.pdf';
+import portfolioImg from '../assets/images/portfolioImg.jpg';
 
 
 
@@ -31,19 +32,32 @@ const Home = () => {
             </AnimatedSection>
             <AnimatedSection className="pageSection projectSection">
                 <h3>Featured Projects</h3>
-                <div className={`projectBox${showElement ? " animate-in" : ""}`}>
-                    <img className="projectImage" src={tournamentImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
+                <AnimatedSection className="projectGrid">
+                    <div className={`projectBox${showElement ? " animate-in" : ""}`}>
+                    <img className="projectImage" src={portfolioImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
                     <div className="projectTextArea">
-                        <h4 className="projectText">Tournament Generator</h4>
-                        <p className="projectText">Dynamic tournament bracket generator & tracker</p>
+                        <h4 className="projectText">Portfolio</h4>
+                        <p className="projectText">This websites github repo</p>
                     </div>
                     <div className="projectButtonsArea">
-                        <button className="projectButton">View Project</button>
                         <a href="https://github.com/SAToland/tournament-generator" target="_blank">
                             <button className="projectButton">GitHub</button>
                         </a>
                     </div>
-                </div>
+                    </div>
+                    <div className={`projectBox${showElement ? " animate-in" : ""}`}>
+                        <img className="projectImage" src={tournamentImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
+                        <div className="projectTextArea">
+                            <h4 className="projectText">Tournament Generator</h4>
+                            <p className="projectText">Dynamic tournament bracket generator & tracker</p>
+                        </div>
+                        <div className="projectButtonsArea">
+                            <a href="https://github.com/SAToland/tournament-generator" target="_blank">
+                                <button className="projectButton">GitHub</button>
+                            </a>
+                        </div>
+                    </div>
+                </AnimatedSection>
                 <h3 className="skillsTitle">Skills & Technologies</h3>
                 <AnimatedSection className="skillGrid">
                         {skills.map((skill, i) => (
