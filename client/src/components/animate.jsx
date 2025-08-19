@@ -17,7 +17,7 @@ function AnimatedSection({ children, className}) {
 
     return (
         <section ref={ref}
-        className={`${className} to-animate${visible ? " animate-in" : ""}`}>
+        className={`${className} toAnimate${visible ? " animateIn" : ""}`}>
             {children}
         </section>
     );

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, Route } from 'react-router-dom';
 import tournamentImg from '../assets/images/tournamentImg.jpg';
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import DoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import DoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import DoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import EmailIcon from '@mui/icons-material/Email';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
@@ -26,14 +28,27 @@ const Home = () => {
     return (
         <div id="container">
             <AnimatedSection className="pageSection topSection">
-                <h1>Seth Toland</h1>
+                <div className='nameContainer'>
+                    <span className='name'>
+                        <DoubleArrowRightIcon className={`nameArrowIcon${showElement ? " animateIn" : ""} leftArrow`} style={{ fontSize: '1.5rem' }}/>
+                        Seth Toland
+                        <DoubleArrowLeftIcon className={`nameArrowIcon${showElement ? " animateIn" : ""} rightArrow`} style={{ fontSize: '1.5rem' }}/>
+                    </span>
+                    <span className='introText'>
+                        <p className='introText'>
+                        <i><b>Hi, I'm Seth Toland — a full-stack developer passionate about React & JavaScript. </b></i>
+                        I build applications end-to-end with tools like <b>MongoDB</b> & <b>SQL</b>. 
+                        This portfolio highlights my <a href="#projects"><u><b>projects and skills</b></u></a> as I look for exciting new opportunities.
+                        </p>
+                    </span>
+                </div>
                 <h2>Full Stack Developer</h2>
-                <KeyboardDoubleArrowDownIcon className={`arrowIcon${showElement ? " animate-in" : ""}`}/>
+                <DoubleArrowDownIcon className={`arrowIcon${showElement ? " animateIn" : ""}`}/>
             </AnimatedSection>
             <AnimatedSection className="pageSection projectSection">
-                <h3>Featured Projects</h3>
+                <h3 id='projects'>Featured Projects</h3>
                 <AnimatedSection className="projectGrid">
-                    <div className={`projectBox${showElement ? " animate-in" : ""}`}>
+                    <div className={`projectBox${showElement ? " animateIn" : ""}`}>
                     <img className="projectImage" src={portfolioImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
                     <div className="projectTextArea">
                         <h4 className="projectText">Portfolio</h4>
@@ -45,7 +60,7 @@ const Home = () => {
                         </a>
                     </div>
                     </div>
-                    <div className={`projectBox${showElement ? " animate-in" : ""}`}>
+                    <div className={`projectBox${showElement ? " animateIn" : ""}`}>
                         <img className="projectImage" src={tournamentImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
                         <div className="projectTextArea">
                             <h4 className="projectText">Tournament Generator</h4>
@@ -58,7 +73,7 @@ const Home = () => {
                         </div>
                     </div>
                 </AnimatedSection>
-                <h3 className="skillsTitle">Skills & Technologies</h3>
+                <h3 className="skillsTitle" id='skills'>Skills & Technologies</h3>
                 <AnimatedSection className="skillGrid">
                         {skills.map((skill, i) => (
                             <button 
@@ -76,7 +91,7 @@ const Home = () => {
                         <p><PersonPinCircleIcon sx={{fontSize: 20, marginRight: "8px", position: "relative", top: "2px"}}/>The Colony, TX</p>
                         <div>
                             <a href="mailto:tolandseth@gmail.com"><button className="footerButton"><EmailIcon/>Get in Touch</button></a>
-                            <a  href={resume} download="Seth_Toland_Resume"><button className="footerButton"><DescriptionIcon/>View Resume</button></a>
+                            <a  href={resume} target='_blank' rel='noopener noreferrer'><button className="footerButton"><DescriptionIcon/>View Resume</button></a>
                         </div>
                         <div>
                             <a href="https://github.com/SAToland" target="_blank"><button className="socialButton"><GitHubIcon/></button></a>
