@@ -5,6 +5,7 @@ import Home from './views/Home'
 
 
 function App() {
+  document.title = "Seth Toland";
 
   return (
     <>

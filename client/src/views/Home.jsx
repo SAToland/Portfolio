@@ -12,12 +12,20 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AnimatedSection from '../components/animate';
 import resume from '../assets/files/Seth_Toland_Resume.pdf';
 import portfolioImg from '../assets/images/portfolioImg.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Badge from 'react-bootstrap/Badge';
 
 
 
 const Home = () => {
- const [showElement, setshowElement] = useState(false)
- let skills = ["React", "JavaScript", "Java", "Python", "HTML/CSS", "MongoDB", "SQL", "Spring Boot"]
+ const [showElement, setshowElement] = useState(false);
+ let skills = ["React", "JavaScript", "Java", "Python", "HTML/CSS", "MongoDB", "SQL", "Spring Boot"];
+ const skillsRow1 = skills.slice(0, 4);
+ const skillsRow2 = skills.slice(4, 8);
 
  useEffect(() => {
     const timer = setTimeout(() => setshowElement(true), 50)
@@ -34,13 +42,15 @@ const Home = () => {
                         Seth Toland
                         <DoubleArrowLeftIcon className={`nameArrowIcon${showElement ? " animateIn" : ""} rightArrow`} style={{ fontSize: '1.5rem' }}/>
                     </span>
-                    <span className='introText'>
-                        <p className='introText'>
-                        <i><b>Hi, I'm Seth Toland — a full-stack developer passionate about React & JavaScript. </b></i>
-                        I build applications end-to-end with tools like <b>MongoDB</b> & <b>SQL</b>. 
-                        This portfolio highlights my <a href="#projects"><u><b>projects and skills</b></u></a> as I look for exciting new opportunities.
-                        </p>
-                    </span>
+                    <Container fluid>
+                        <span className='introText text-center w-100 mx-auto fs-6 fs-md-4 fs-lg-4'>
+                            <p className='introText'>
+                            <i><b>Hi, I'm Seth Toland — a full-stack developer passionate about React & JavaScript. </b></i>
+                            I build applications end-to-end with tools like <b>MongoDB</b> & <b>SQL</b>. 
+                            This portfolio highlights my <a href="#projects"><u><b>projects and skills</b></u></a> as I look for exciting new opportunities.
+                            </p>
+                        </span>
+                    </Container>
                 </div>
                 <h2>Full Stack Developer</h2>
                 <DoubleArrowDownIcon className={`arrowIcon${showElement ? " animateIn" : ""}`}/>
@@ -48,42 +58,69 @@ const Home = () => {
             <AnimatedSection className="pageSection projectSection">
                 <h3 id='projects'>Featured Projects</h3>
                 <AnimatedSection className="projectGrid">
-                    <div className={`projectBox${showElement ? " animateIn" : ""}`}>
-                    <img className="projectImage" src={portfolioImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
-                    <div className="projectTextArea">
-                        <h4 className="projectText">Portfolio</h4>
-                        <p className="projectText">This websites github repo</p>
-                    </div>
-                    <div className="projectButtonsArea">
-                        <a href="https://github.com/SAToland/tournament-generator" target="_blank">
-                            <button className="projectButton">GitHub</button>
-                        </a>
-                    </div>
-                    </div>
-                    <div className={`projectBox${showElement ? " animateIn" : ""}`}>
-                        <img className="projectImage" src={tournamentImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
-                        <div className="projectTextArea">
-                            <h4 className="projectText">Tournament Generator</h4>
-                            <p className="projectText">Dynamic tournament bracket generator & tracker</p>
-                        </div>
-                        <div className="projectButtonsArea">
-                            <a href="https://github.com/SAToland/tournament-generator" target="_blank">
-                                <button className="projectButton">GitHub</button>
-                            </a>
-                        </div>
-                    </div>
+                    <Container>
+                        <Row>
+                            <Col md={6}>
+                                <div className={`projectBox${showElement ? " animateIn" : ""}`}>
+                                    <Image fluid className="projectImage" src={portfolioImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
+                                    <div className="projectTextArea">
+                                        <h4 className="projectText">Portfolio</h4>
+                                        <p className="projectText">This websites github repo</p>
+                                    </div>
+                                    <div className="projectButtonsArea">
+                                        <a href="https://github.com/SAToland/tournament-generator" target="_blank">
+                                            <button className="projectButton">GitHub</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col md={6}>
+                                <div className={`projectBox${showElement ? " animateIn" : ""}`}>
+                                    <Image fluid className="projectImage" src={tournamentImg} alt="Tournament Image" width="500px" height="300px" style={{borderRadius: "30px"}}/>
+                                    <div className="projectTextArea">
+                                        <h4 className="projectText">Tournament Generator</h4>
+                                        <p className="projectText">Dynamic tournament bracket generator & tracker</p>
+                                    </div>
+                                    <div className="projectButtonsArea">
+                                        <a href="https://github.com/SAToland/tournament-generator" target="_blank">
+                                            <button className="projectButton">GitHub</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
                 </AnimatedSection>
-                <h3 className="skillsTitle" id='skills'>Skills & Technologies</h3>
-                <AnimatedSection className="skillGrid">
-                        {skills.map((skill, i) => (
-                            <button 
-                            className="skillButton"
-                            style={{"--i" : i + 1}}
-                            key={skill}
-                            >
-                                {skill}
-                            </button>
-                        ))}
+                <h3 className="skillsTitle" id="skills">Skills & Technologies</h3>
+                <AnimatedSection className="skillGrid mb-5">
+                    <Container>
+                        <Row className="skillRow">
+                            {skillsRow1.map((skill, i) => (
+                            <Col xs={6} md={3}>
+                                <Badge
+                                className="skillButton customSkillBadge fs-6 fs-md-4 py-md-4 px-3 px-md-4"
+                                style={{"--i" : i + 1}}
+                                key={skill}
+                                >
+                                    {skill}
+                                </Badge>
+                            </Col>
+                            ))}
+                        </Row>
+                        <Row className="skillRow">
+                            {skillsRow2.map((skill, i) => (
+                            <Col xs={6} md={3}>
+                                <Badge 
+                                className="skillButton customSkillBadge fs-6 fs-md-4 py-md-4 px-3 px-md-4"
+                                style={{"--i" : i + 1}}
+                                key={skill}
+                                >
+                                    {skill}
+                                </Badge>
+                            </Col>
+                            ))}
+                        </Row>
+                    </Container>
                 </AnimatedSection>
             </AnimatedSection>
             <AnimatedSection className="footerSection">
