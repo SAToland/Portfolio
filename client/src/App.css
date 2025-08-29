@@ -19,7 +19,7 @@ html {
     color: white;
     text-align: center;
     opacity: 0;
-    transition: top 3s, opacity 1s;
+    transition: top 3s, opacity 4s;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
