@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seth Toland — Resume</title>
+<!--
+  Source for client/public/Seth_Toland_Resume.pdf (served at sethtoland.com/Seth_Toland_Resume.pdf).
+  Render with:  powershell -File resume/build.ps1
+  Single column, real text, no photo or sidebar, so applicant tracking systems parse it cleanly.
+-->
+<style>
+  @page { size: Letter; margin: 0.45in 0.55in; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.25;
+    color: #1d2330;
+  }
+  a { color: inherit; text-decoration: none; }
+  header { text-align: center; margin-bottom: 8pt; }
+  h1 { font-size: 22pt; letter-spacing: 0.5pt; margin: 0; color: #2c3e5c; }
+  .role { font-size: 11.5pt; margin: 1pt 0 3pt; color: #2c3e5c; font-weight: 600; }
+  .contact { font-size: 9.5pt; }
+  .contact span + span::before { content: "  |  "; white-space: pre; color: #8a93a6; }
+  h2 {
+    font-size: 11pt; text-transform: uppercase; letter-spacing: 1pt;
+    color: #2c3e5c; border-bottom: 1px solid #2c3e5c;
+    margin: 8pt 0 3pt; padding-bottom: 1pt;
+  }
+  p { margin: 0 0 3pt; }
+  .entry { margin-bottom: 5pt; }
+  .entryHead { display: flex; justify-content: space-between; gap: 12pt; font-weight: 700; }
+  .entrySub { display: flex; justify-content: space-between; gap: 12pt; font-style: italic; margin-bottom: 2pt; }
+  ul { margin: 1pt 0 0; padding-left: 14pt; }
+  li { margin-bottom: 1.5pt; }
+  .skills { display: grid; grid-template-columns: max-content 1fr; column-gap: 8pt; row-gap: 1pt; }
+  .skills dt { font-weight: 700; }
+  .skills dd { margin: 0; }
+  /* Blanks still to fill in. Search for "fill" and remove every one before exporting the final PDF. */
+  .fill { background: #fff176; padding: 0 2pt; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Seth Toland</h1>
+  <p class="role">Full Stack &amp; Mobile Developer</p>
+  <p class="contact">
+    <span>Plano, TX</span>
+    <span>(972) 743-5355</span>
+    <span><a href="mailto:tolandseth@gmail.com">tolandseth@gmail.com</a></span>
+    <span><a href="https://sethtoland.com">sethtoland.com</a></span>
+    <span><a href="https://www.linkedin.com/in/seth-toland/">linkedin.com/in/seth-toland</a></span>
+    <span><a href="https://github.com/SAToland">github.com/SAToland</a></span>
+  </p>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p>
+    Full stack and mobile developer who designed, built, and maintains BearTrax, an offline-first
+    Flutter and Firebase app that an oilfield services company uses every day for safety reporting
+    and payroll. Works across the stack: mobile UI, serverless TypeScript backend, security rules,
+    and CI/CD, from requirements through production support.
+  </p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="entryHead">
+      <span>Freelance Mobile Developer, Bear Oilfield Services LLC</span>
+      <span>March 2026 – Present</span>
+    </div>
+    <div class="entrySub">
+      <span>BearTrax, a field workforce management app (Flutter, Dart, Riverpod, Firebase, TypeScript)</span>
+      <span>sethtoland.com/beartrax</span>
+    </div>
+    <ul>
+      <li>Sole developer of a production Android and iOS app (37.5k lines of Dart, 13 feature modules)
+        that replaced the crew's paper safety and billing forms and is used daily in the field.</li>
+      <li>Built it offline-first on Firestore's local cache with device-generated IDs, so forms save
+        instantly at well sites with no signal. Moved gapless billing numbers to transactional Cloud
+        Function triggers so numbering stays correct even after a device is offline for days.</li>
+      <li>Wrote 15 TypeScript Cloud Functions for user provisioning, sequential numbering, scheduled
+        job sweeps, and push notification fan-out.</li>
+      <li>Generated print-ready PDFs of the company's 5 existing paper form types on the device, so clients and
+        regulators accepted the output unchanged. Built a work-hours report that exports weekly payroll to Excel (.xlsx).</li>
+      <li>Enforced employee, supervisor, and admin roles through signed Firebase Auth custom claims and
+        field-level Firestore security rules, and kept all privilege changes on the server.</li>
+      <li>Found and fixed two release-only production bugs without a Mac: Android Auto Backup restoring
+        stale login data (logging users out on every relaunch), and missing native APNs registration
+        that silently blocked all iOS push notifications.</li>
+      <li>Set up CI/CD with GitHub Actions and Codemagic auto-submission to TestFlight. Covered payroll
+        rounding, week boundaries, and PDF pagination with 16 test suites. Shipped full English/Spanish
+        localization (887 strings).</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entryHead">
+      <span>Server, Blue Goose Cantina</span>
+      <span>June 2025 – March 2026</span>
+    </div>
+    <ul>
+      <li>Handled multiple tables at once through peak dinner rushes at a busy Tex-Mex restaurant, working
+        with kitchen and bar staff to keep orders accurate and on time.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+
+  <div class="entry">
+    <div class="entryHead">
+      <span>Tournament Generator | React, Node.js, Express, MongoDB</span>
+      <span>github.com/SAToland/tournament-generator</span>
+    </div>
+    <ul>
+      <li>Built a tournament bracket app with custom React components that generate and render
+        matchups dynamically as results come in.</li>
+      <li>Designed a RESTful Express API backed by MongoDB to save tournaments and results.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entryHead">
+      <span>eLibrary | React, Node.js, Express, MongoDB (team project)</span>
+      <span>5-day sprint</span>
+    </div>
+    <ul>
+      <li>Led the front end's integration with an external book-data API, and built book search,
+        reviews, and user authentication with personalized dashboards.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <dl class="skills">
+    <dt>Languages</dt><dd>Dart, TypeScript, JavaScript (ES6+), Java, Python, SQL, HTML/CSS</dd>
+    <dt>Mobile</dt><dd>Flutter, Riverpod, go_router, iOS/Android native setup, ML Kit, VisionKit</dd>
+    <dt>Backend &amp; Cloud</dt><dd>Firebase (Firestore, Auth, Cloud Functions, Storage, FCM, App Check, Crashlytics), Node.js, Express, Spring Boot, Flask, REST APIs</dd>
+    <dt>Frontend</dt><dd>React, React Router, Bootstrap, Vite</dd>
+    <dt>Databases</dt><dd>Firestore, MongoDB/Mongoose, MySQL</dd>
+    <dt>Tools</dt><dd>Git, GitHub Actions, Codemagic, TestFlight, Postman</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="entryHead">
+      <span>Coding Dojo: Full-Stack Software Development Certificate</span>
+      <span>January 2025</span>
+    </div>
+    <p>An intensive online program covering front-end and back-end development in the MERN, Python, and Java stacks.</p>
+  </div>
+</section>
+
+</body>
+</html>

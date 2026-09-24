@@ -1,0 +1,356 @@
+/* BearTrax case study.
+   Echoes the app's own identity — dark industrial ground, gold accents,
+   Outfit + DM Sans — while staying recognisably part of the portfolio. */
+
+.caseStudy {
+    background: #0d0d12;
+    color: #ece9f5;
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+    overflow-x: hidden;
+}
+
+.caseStudy .toAnimate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease-in, transform 0.8s ease-out;
+}
+
+.caseStudy .toAnimate.animateIn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.caseNav {
+    padding-top: 2rem;
+}
+
+.caseBackLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    transition: color 0.25s;
+}
+
+.caseBackLink:hover,
+.caseBackLink:visited {
+    color: var(--muted);
+}
+
+.caseBackLink:hover {
+    color: var(--gold);
+}
+
+.caseBackLink .MuiSvgIcon-root {
+    font-size: 1.1rem;
+}
+
+/* Hero */
+
+.caseHero {
+    padding: 3rem 0 4rem;
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(98, 73, 222, 0.22), transparent 60%),
+        radial-gradient(ellipse at 90% 20%, rgba(212, 165, 55, 0.12), transparent 55%);
+}
+
+.caseEyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-soft);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.caseTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 0.35rem;
+}
+
+.caseClient {
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+}
+
+.caseTagline {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.45;
+    color: #ece9f5;
+    margin-bottom: 1.5rem;
+    max-width: 34ch;
+}
+
+.caseStatus {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted);
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid #7ee2a8;
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.caseStatus strong {
+    color: #7ee2a8;
+}
+
+.caseStatus .MuiSvgIcon-root {
+    color: #7ee2a8;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.caseHeroShot {
+    display: flex;
+    justify-content: center;
+}
+
+/* Stat strip */
+
+.caseStats {
+    padding: 1rem 0 3rem;
+}
+
+.statRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.statCell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.4rem 1.2rem;
+    background: #101116;
+}
+
+.statValue {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+/* Prose blocks */
+
+.caseBlock {
+    padding: 3rem 0;
+}
+
+.caseProse {
+    max-width: 68ch;
+}
+
+.caseProse h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.caseProse h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+}
+
+.caseProse p {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: #c9c5d8;
+    margin-bottom: 1.1rem;
+}
+
+.caseSubsection {
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid var(--hairline);
+}
+
+.caseSubsection:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+
+/* Screenshots */
+
+.caseScreens .caseProse {
+    margin-bottom: 2rem;
+}
+
+.caseScreens .phoneFrame {
+    max-width: 230px;
+}
+
+/* Production debugging */
+
+.caseDebug {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+}
+
+.caseDebugIntro {
+    color: var(--muted) !important;
+    margin-bottom: 2rem !important;
+}
+
+.debugCard {
+    height: 100%;
+    background: #101116;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 1.6rem;
+}
+
+.debugIcon {
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+}
+
+.debugCard h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin-bottom: 0.85rem;
+}
+
+.debugCard p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #c9c5d8;
+    margin: 0;
+}
+
+/* Features and stack */
+
+.featureList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.featureList li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    color: #c9c5d8;
+}
+
+.featureList li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+.stackList {
+    margin: 0;
+}
+
+.stackRow {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.stackRow:last-child {
+    border-bottom: none;
+}
+
+.stackRow dt {
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.stackRow dd {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: #c9c5d8;
+}
+
+/* Footer */
+
+.caseFooter {
+    padding: 4rem 0 2rem;
+}
+
+.caseFooter h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+}
+
+.caseFooter p {
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 52ch;
+    margin: 0 auto 1.75rem;
+}
+
+.caseFooterButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.caseBackBottom {
+    display: inline-flex;
+}
+
+@media (max-width: 575.98px) {
+    .stackRow {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+
+    .caseScreens .phoneFrame {
+        max-width: 160px;
+    }
+}

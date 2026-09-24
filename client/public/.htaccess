@@ -1,0 +1,29 @@
+# SPA routing for Hostinger (Apache / LiteSpeed).
+# Without this, loading https://www.sethtoland.com/beartrax directly returns a
+# 404 because the server looks for a real /beartrax directory. Serve real files
+# when they exist, otherwise hand the request to index.html and let React Router
+# resolve it.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Leave existing files and directories alone.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Only /assets/ is content-hashed by Vite, so only /assets/ is safe to cache
+# forever. Root-level files (favicon.svg, og-preview.jpg) keep stable names, so
+# caching them for a year would strand any future update behind a stale copy.
+# index.html must always revalidate or visitors keep loading old asset hashes.
+<IfModule mod_headers.c>
+  SetEnvIf Request_URI "^/assets/" LONG_CACHE=1
+  Header set Cache-Control "public, max-age=31536000, immutable" env=LONG_CACHE
+
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

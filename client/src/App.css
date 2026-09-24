@@ -1,5 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* Fonts are loaded from index.html so they can be preconnected — a CSS @import
+   here would block rendering until the stylesheet itself had downloaded. */
 
+:root {
+    --accent: #6249de;
+    --accent-deep: #510889;
+    --gold: #d4a537;
+    --gold-soft: rgba(212, 165, 55, 0.14);
+    --panel: rgba(255, 255, 255, 0.04);
+    --hairline: rgba(255, 255, 255, 0.1);
+    --muted: #a5a2b3;
+}
 
 * {
     box-sizing: border-box;
@@ -15,19 +25,42 @@ html {
     background: black;
 }
 
+/* Default — touch devices, and anything without a precise pointer. The intro
+   is ordinary always-visible copy sitting under the name. Previously this was
+   hover-only everywhere, which on a phone meant the pitch was reachable only by
+   tapping the name, with nothing to suggest the name was tappable. */
 .introText {
     color: white;
     text-align: center;
-    opacity: 0;
-    transition: top 3s, opacity 4s;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    top: 100%;
-    pointer-events: none;
+    margin: 1.5rem auto 0;
+    max-width: 62ch;
+    line-height: 1.65;
+}
+
+/* Desktop keeps the hover reveal. */
+@media (hover: hover) and (pointer: fine) {
+    .introText {
+        opacity: 0;
+        transition: top 3s, opacity 4s;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 auto;
+        width: 100%;
+        max-width: 68ch;
+        top: 100%;
+        pointer-events: none;
+    }
+
+    .topSection .nameContainer:hover .name {
+        transform: translateY(-170px) rotate(0deg);
+    }
+
+    .nameContainer:hover .introText {
+        opacity: 1;
+        top: -80px;
+        pointer-events: auto;
+    }
 }
 
 .nameContainer {
@@ -78,16 +111,6 @@ html {
     transition: opacity 2.5s ease-in;
 }
 
-.topSection .nameContainer:hover .name {
-    transform: translateY(-160px) rotate(0deg);
-}
-
-.nameContainer:hover .introText {
-    opacity: 1;
-    top: -45px;
-    pointer-events: auto;
-}
-
 .pageSection {
     min-height: 100vh;
     box-sizing: border-box;
@@ -103,10 +126,24 @@ html {
 
 
 /* Top Section styling */
+
+/* Every section's background is a gradient that begins and ends fully
+   transparent, layered over the black on #container. Section boundaries are
+   therefore always black meeting black, so they can't show a seam — and can't
+   grow one later when a section gets taller.
+
+   The vertical radius is deliberately 72% against a centre 28% down: that puts
+   the bottom edge of the box at 1.0 on the gradient ramp, i.e. fully
+   transparent, right where .projectSection begins. Raising the radius past
+   ~72% pushes the fade past the edge and the hard cut comes back. */
 .topSection {
-    background: 
-    rgb(38, 35, 61)
-    radial-gradient(transparent, black 90%);
+    background: radial-gradient(
+        ellipse 150% 72% at 50% 28%,
+        rgba(52, 47, 84, 0.95) 0%,
+        rgba(38, 35, 61, 0.7) 45%,
+        rgba(28, 25, 46, 0.3) 75%,
+        rgba(0, 0, 0, 0) 100%
+    );
     position: relative;
     opacity: 0;
     transition: opacity 1s ease-in;
@@ -122,7 +159,7 @@ html {
 
 .topSection .name{
     font-size: 3rem;
-    background-image: linear-gradient(90deg, rgb(98, 73, 222), rgb(81, 8, 137));
+    background-image: linear-gradient(90deg, var(--accent), var(--accent-deep));
     color: transparent;
     background-clip: text;
     opacity: 0;
@@ -176,10 +213,19 @@ html {
 
 
 /* Project Section Styling */
+/* Stays black almost the whole way down. This section is several viewports
+   tall, so starting the magenta partway up gave it an enormous run — the ramp
+   is held back to the last tenth and only hints at colour before handing off to
+   the footer. */
 .projectSection {
     opacity: 0;
     transition: opacity 1s ease-in;
-    background: linear-gradient(black 70%, rgb(45, 5, 45));
+    background: linear-gradient(
+        to bottom,
+        rgba(45, 5, 45, 0) 0%,
+        rgba(45, 5, 45, 0) 90%,
+        rgba(45, 5, 45, 0.12) 100%
+    );
     color: white;
 }
 
@@ -289,18 +335,28 @@ html {
     cursor: default !important;
 }
 
+/* 0.1s rather than 0.2s: the list is twice as long as it used to be, and a
+   0.2s step meant the last badge waited well over two seconds. */
 .skillGrid.animateIn .skillButton {
     opacity: 1;
-    transition-delay: calc(0.2s * var(--i));
+    transition-delay: calc(0.1s * var(--i));
 }
 
+/* Flex-wrap rather than two fixed Bootstrap rows, so the list takes any number
+   of skills without being re-sliced by hand. */
 .skillRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
     margin-bottom: 20px;
-    --bs-gutter-x: 0.1rem !important;
 }
 
 /* Footer Section Styling */
 
+/* Picks up at the exact alpha .projectSection ends on, so the magenta carries
+   across the boundary instead of stopping dead at it, then settles back to
+   black behind the contact links. */
 .footerSection {
     min-height: 35vh;
     display: flex;
@@ -308,6 +364,12 @@ html {
     align-items: center;
     color: white;
     padding-top: 5%;
+    background: linear-gradient(
+        to bottom,
+        rgba(45, 5, 45, 0.12) 0%,
+        rgba(45, 5, 45, 0.35) 45%,
+        rgba(45, 5, 45, 0.75) 100%
+    );
 }
 
 .footerSection > div:last-child {
@@ -380,6 +442,262 @@ html {
 
 .topSection .MuiSvgIcon-root {
     font-size: 40px;
+}
+
+/* Featured project block (BearTrax) */
+
+.featuredWrap {
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.featuredCard {
+    background: linear-gradient(155deg, rgba(38, 35, 61, 0.95), rgba(13, 13, 18, 0.95));
+    border: 1px solid var(--hairline);
+    border-radius: 24px;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease-in, transform 0.9s ease-out;
+}
+
+.featuredWrap.animateIn .featuredCard {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.featuredLabel {
+    display: inline-block;
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-soft);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.featuredTitle {
+    font-family: 'Outfit', 'Roboto', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.featuredClient {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.featuredStatus {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #7ee2a8;
+    background: rgba(126, 226, 168, 0.12);
+    border-radius: 999px;
+    padding: 0.2rem 0.7rem;
+}
+
+.featuredPitch {
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.featuredBlurb {
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+}
+
+.featuredStats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 1.5rem;
+}
+
+.featuredStat {
+    display: flex;
+    flex-direction: column;
+}
+
+.featuredStatValue {
+    font-family: 'Outfit', 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+}
+
+.featuredStatLabel {
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.featuredBadges,
+.caseBadges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.techBadge {
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    color: #ded9ef;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+}
+
+.featuredCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-weight: 600;
+    color: #14161a;
+    background: var(--gold);
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    transition: background-color 0.25s, transform 0.25s;
+}
+
+.featuredCta:hover,
+.featuredCta:visited {
+    color: #14161a;
+}
+
+.featuredCta:hover {
+    background: #e6bc55;
+    transform: translateX(3px);
+}
+
+.featuredCta .MuiSvgIcon-root {
+    font-size: 1.1rem;
+}
+
+.featuredShotCol {
+    display: flex;
+    justify-content: center;
+}
+
+/* Qualified with .phoneFrame because the shared .phoneFrame rule below would
+   otherwise win on source order and override this max-width. */
+.phoneFrame.featuredPhone {
+    max-width: 240px;
+}
+
+.otherProjectsTitle {
+    margin-bottom: 0.5rem;
+}
+
+/* Phone frame — shared by the featured block and the case study */
+
+.phoneFrame {
+    margin: 0 auto;
+    max-width: 260px;
+}
+
+/* Matches the source captures (1440x2970) so object-fit: cover has nothing to
+   crop. A generic 9/19.5 frame is narrower than these and would shave the row
+   chevrons off both edges. */
+.phoneFrameBody {
+    position: relative;
+    aspect-ratio: 1440 / 2970;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    background: #0d0d12;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+.phoneFrameNotch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34%;
+    height: 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    z-index: 2;
+}
+
+.phoneFrameShot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.phoneFramePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.28);
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.03) 0 10px,
+            transparent 10px 20px
+        );
+}
+
+.phoneFramePlaceholder .MuiSvgIcon-root {
+    font-size: 2rem;
+}
+
+.phoneFrameCaption {
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.45;
+    margin-top: 0.85rem;
+}
+
+@media (max-width: 767.98px) {
+    .featuredCard {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .featuredTitle {
+        font-size: 1.75rem;
+    }
+
+    .featuredStats {
+        gap: 1.25rem;
+    }
+
+    .phoneFrame.featuredPhone {
+        max-width: 190px;
+    }
 }
 
 a{ text-decoration: none; color: white;}
